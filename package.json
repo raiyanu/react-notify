@@ -13,7 +13,7 @@
 		"build": "vite build",
 		"lint": "eslint .",
 		"preview": "vite preview",
-		"publish": "rmdir /s /q dist && npm run build && npm publish --access public"
+		"publish": "rmdir /s /q dist && npm run build && npm version patch && npm publish --access public"
 	},
 	"dependencies": {
 		"react": "^19.0.0",

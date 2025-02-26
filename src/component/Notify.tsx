@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useState } from "react";
+import "./Notify.css";
 
 interface NotifyContextType {
-	alert: (msg: string) => void;
+	alert: (msg: string, type?: string, timeout?: number) => void;
 }
 
 const NotifyContext = createContext<NotifyContextType | undefined>(undefined);
@@ -11,43 +12,39 @@ export const NotificationProvider = ({
 }: {
 	children: React.ReactNode;
 }) => {
-	const [message, setMessage] = useState<string | null>(null);
+	const [notification, setNotification] = useState<{
+		message: string;
+		type: string;
+	} | null>(null);
 
-	const alert = (msg: string) => {
-		setMessage(msg);
-		setTimeout(() => setMessage(null), 3000); // Auto-dismiss after 3 seconds
+	const alert = (
+		msg: string,
+		type: string = "info",
+		timeout: number = 3000
+	) => {
+		setNotification({ message: msg, type });
+		setTimeout(() => setNotification(null), timeout); // Auto-dismiss after specified timeout
 	};
 
 	return (
 		<NotifyContext.Provider value={{ alert }}>
 			{children}
-			{message && (
+			{notification && (
 				<div
-					style={{
-						position: "fixed",
-						top: "10px",
-						right: "10px",
-						background: "black",
-						color: "white",
-						padding: "10px",
-						borderRadius: "5px",
-					}}
+					className={`notification ${notification.type}`}
+					onClick={() => setNotification(null)}
 				>
-					{message}
+					{notification.message}
 				</div>
 			)}
 		</NotifyContext.Provider>
 	);
 };
 
-export const notify = {
-	alert: (msg: string) => {
-		const context = useContext(NotifyContext);
-		if (!context) {
-			throw new Error(
-				"notify.alert must be used within a NotificationProvider"
-			);
-		}
-		context.alert(msg);
-	},
+export const useNotify = () => {
+	const context = useContext(NotifyContext);
+	if (!context) {
+		throw new Error("useNotify must be used within a NotificationProvider");
+	}
+	return context;
 };

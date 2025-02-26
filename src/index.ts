@@ -1,1 +1,1 @@
-export { NotificationProvider, notify } from "./component/Notify";
+export { NotificationProvider, useNotify } from "./component/Notify";
