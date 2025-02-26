@@ -41,8 +41,8 @@
 	},
 	"exports": {
 		".": {
-			"import": "./dist/index.js",
-			"require": "./dist/index.js"
+			"import": "./dist/react-notify.es.js",
+			"require": "./dist/react-notify.umd.js"
 		}
 	},
 	"publishConfig": {
