@@ -1,6 +1,6 @@
 {
 	"name": "notifymate",
-	"version": "3.1.20",
+	"version": "3.1.21",
 	"type": "module",
 	"main": "dist/react-notify.umd.js",
 	"module": "dist/react-notify.es.js",
