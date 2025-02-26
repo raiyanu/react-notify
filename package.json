@@ -2,8 +2,8 @@
 	"name": "notifymate",
 	"version": "3.1.19",
 	"type": "module",
-	"main": "dist/index.js",
-	"module": "dist/index.js",
+	"main": "dist/react-notify.umd.js",
+	"module": "dist/react-notify.es.js",
 	"types": "dist/index.d.ts",
 	"files": [
 		"dist"
