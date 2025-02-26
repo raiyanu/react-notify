@@ -6,7 +6,8 @@
 	"module": "dist/react-notify.es.js",
 	"types": "dist/index.d.ts",
 	"files": [
-		"dist"
+		"dist",
+		"src/Notify.css"
 	],
 	"scripts": {
 		"dev": "vite",
