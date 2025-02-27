@@ -16,7 +16,7 @@ export default defineConfig({
 		lib: {
 			entry: "src/index.ts",
 			name: "notifymate",
-			formats: ["es", "umd"],
+			formats: ["es", "cjs"],
 			fileName: (format) => `notifymate.${format}.js`,
 		},
 		rollupOptions: {
