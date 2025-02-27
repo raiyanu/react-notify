@@ -4,7 +4,6 @@
 	"type": "module",
 	"main": "dist/react-notify.umd.js",
 	"module": "dist/react-notify.es.js",
-	"types": "dist/index.d.ts",
 	"files": [
 		"dist",
 		"src/Notify.css"
@@ -44,7 +43,8 @@
 	"exports": {
 		".": {
 			"import": "./dist/react-notify.es.js",
-			"require": "./dist/react-notify.umd.js"
+			"require": "./dist/react-notify.umd.js",
+			"types": "./dist/index.d.ts"
 		}
 	},
 	"publishConfig": {
