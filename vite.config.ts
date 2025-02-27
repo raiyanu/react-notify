@@ -20,11 +20,10 @@ export default defineConfig({
 			fileName: (format) => `react-notify.${format}.js`,
 		},
 		rollupOptions: {
-			external: ["react", "react-dom"],
+			external: ["react"],
 			output: {
 				globals: {
 					react: "React",
-					"react-dom": "ReactDOM",
 				},
 			},
 		},

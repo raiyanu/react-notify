@@ -2,8 +2,10 @@
 	"name": "notifymate",
 	"version": "3.1.27",
 	"type": "module",
-	"main": "dist/react-notify.umd.js",
-	"module": "dist/react-notify.es.js",
+	"main": "dist/notifymate.cjs.js",
+	"module": "dist/notifymate.es.js",
+	"types": "./dist/index.d.ts",
+	"sideEffects": false,
 	"files": [
 		"dist",
 		"src/Notify.css"
@@ -13,15 +15,14 @@
 		"build": "vite build",
 		"lint": "eslint .",
 		"preview": "vite preview",
-		"publish:pkg": "rmdir /s /q dist && npm run build && npm version patch && npm publish --access public"
+		"publish:pkg": "rimraf dist && npm run build && npm version patch && npm publish --access public"
 	},
 	"dependencies": {
 		"vite-plugin-css-injected-by-js": "^3.5.2",
 		"vite-plugin-dts": "^4.5.0"
 	},
 	"peerDependencies": {
-		"react": ">=18.0.0",
-		"react-dom": ">=18.0.0"
+		"react": ">=18.0.0"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.21.0",
@@ -34,7 +35,8 @@
 		"globals": "^15.15.0",
 		"typescript": "^4.0.0",
 		"typescript-eslint": "^8.24.1",
-		"vite": "^6.2.0"
+		"vite": "^6.2.0",
+		"rimraf": "^5.0.0"
 	},
 	"repository": {
 		"type": "git",
@@ -42,9 +44,8 @@
 	},
 	"exports": {
 		".": {
-			"import": "./dist/react-notify.es.js",
-			"require": "./dist/react-notify.umd.js",
-			"types": "./dist/index.d.ts"
+			"import": "./dist/notifymate.es.js",
+			"require": "./dist/notifymate.cjs.js"
 		}
 	},
 	"publishConfig": {
