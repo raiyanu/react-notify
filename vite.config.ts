@@ -15,9 +15,9 @@ export default defineConfig({
 	build: {
 		lib: {
 			entry: "src/index.ts",
-			name: "ReactNotify",
+			name: "notifymate",
 			formats: ["es", "umd"],
-			fileName: (format) => `react-notify.${format}.js`,
+			fileName: (format) => `notifymate.${format}.js`,
 		},
 		rollupOptions: {
 			external: ["react"],
