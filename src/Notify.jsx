@@ -2,12 +2,20 @@ import React, { createContext, useContext, useState } from "react";
 
 const NotifyContext = createContext();
 
+export const useNotify = () => {
+    const context = useContext(NotifyContext);
+    if (!context) {
+        throw new Error("useNotify must be used within a NotificationProvider");
+    }
+    return context;
+};
+
 const NotificationProvider = ({ children }) => {
     const [message, setMessage] = useState(null);
 
     const alert = (msg) => {
         setMessage(msg);
-        setTimeout(() => setMessage(null), 3000); // Auto-dismiss after 3 seconds
+        setTimeout(() => setMessage(null), 3000);
     };
 
     return (
@@ -30,16 +38,6 @@ const NotificationProvider = ({ children }) => {
             )}
         </NotifyContext.Provider>
     );
-};
-
-export const notify = {
-    alert: (msg) => {
-        const context = useContext(NotifyContext);
-        if (!context) {
-            throw new Error("notify.alert must be used within a NotificationProvider");
-        }
-        context.alert(msg);
-    },
 };
 
 export default NotificationProvider;
