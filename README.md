@@ -1,50 +1,79 @@
-# React + TypeScript + Vite
+# notifymate
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+`notifymate` is a simple React notification library that allows you to display notifications in your application.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Install the package using npm or yarn:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+npm install notifymate
+# or
+yarn add notifymate
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Usage
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+To use `notifymate`, you need to wrap your app component with the `NotificationProvider` in your main file (e.g., `main.jsx` or `index.jsx`).
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### Wrapping the App Component
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { NotificationProvider } from 'notifymate';
+import App from './App';
+
+ReactDOM.render(
+  <NotificationProvider>
+    <App />
+  </NotificationProvider>,
+  document.getElementById('root')
+);
 ```
+
+### Using the Notification Hook
+
+Once you have wrapped your app component with the `NotificationProvider`, you can use the `useNotify` hook to trigger notifications from anywhere in your component tree.
+
+```jsx
+import React from 'react';
+import { useNotify } from 'notifymate';
+
+const MyComponent = () => {
+  const { alert } = useNotify();
+
+  const handleClick = () => {
+    alert('This is a notification!', 'success');
+  };
+
+  return (
+    <button onClick={handleClick}>
+      Show Notification
+    </button>
+  );
+};
+
+export default MyComponent;
+```
+
+### Notification Types
+
+You can specify different types of notifications by passing the type as the second argument to the `alert` function. The default type is `info`. Available types are:
+
+- `info`
+- `success`
+- `warning`
+- `error`
+
+### Customizing Timeout
+
+You can also customize the timeout duration (in milliseconds) for the notification to auto-dismiss by passing it as the third argument to the `alert` function. The default timeout is 3000 milliseconds.
+
+```jsx
+alert('This is a notification!', 'success', 5000); // Notification will auto-dismiss after 5 seconds
+```
+
+## License
+
+This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) License. To view a copy of this license, visit [http://creativecommons.org/licenses/by-nc/4.0/](http://creativecommons.org/licenses/by-nc/4.0/).
